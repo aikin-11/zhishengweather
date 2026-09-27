@@ -258,6 +258,22 @@ APK 只在 GitHub 发布。Android 可能提示允许当前应用安装未知来
 
 ## 从源码构建
 
+### iOS 移植（实验版）
+
+`ios/` 包含使用 SwiftUI 编写的 iOS 客户端，复用免密钥的 Open-Meteo 天气与城市搜索服务。当前提供实况、遥测、空气质量、24 小时和 7 日预报。它是独立的原生 iOS 实现，Android 源码和构建流程保持原样。
+
+在 macOS 上安装 Xcode 与 XcodeGen 后，可运行：
+
+```sh
+cd ios
+xcodegen generate
+xcodebuild -project ZhishengWeather.xcodeproj -scheme ZhishengWeather -configuration Release -sdk iphoneos CODE_SIGNING_ALLOWED=NO build
+```
+
+GitHub Actions 工作流 `.github/workflows/ios-ipa.yml` 会在修改 iOS 文件时使用 macOS runner 构建并上传未签名 IPA。该 IPA 用于验证构建产物；安装到 iPhone 或发布仍需 Apple Developer 签名与 provisioning profile。
+
+### Android
+
 需要 JDK 17 和 Android SDK 34。仓库包含 Gradle Wrapper。
 
 ```bash

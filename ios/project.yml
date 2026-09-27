@@ -1,0 +1,26 @@
+name: ZhishengWeather
+options:
+  bundleIdPrefix: com.zhishengplus
+  deploymentTarget:
+    iOS: "16.0"
+settings:
+  base:
+    PRODUCT_BUNDLE_IDENTIFIER: com.zhishengplus.zhishengweather
+    PRODUCT_NAME: 枳生天气
+    SWIFT_VERSION: "5.0"
+    TARGETED_DEVICE_FAMILY: "1,2"
+    INFOPLIST_KEY_CFBundleDisplayName: 枳生天气
+    INFOPLIST_KEY_NSLocationWhenInUseUsageDescription: 用于获取当前位置天气。位置仅在本机用于查询天气。
+    INFOPLIST_KEY_UIUserInterfaceStyle: Dark
+    GENERATE_INFOPLIST_FILE: YES
+targets:
+  ZhishengWeather:
+    type: application
+    platform: iOS
+    sources:
+      - path: Sources
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.zhishengplus.zhishengweather
+        CODE_SIGN_STYLE: Manual
+        CODE_SIGNING_ALLOWED: NO

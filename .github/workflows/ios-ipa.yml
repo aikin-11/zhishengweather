@@ -1,0 +1,46 @@
+name: Build iOS IPA
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - "ios/**"
+      - ".github/workflows/ios-ipa.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: macos-15
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install XcodeGen
+        run: brew install xcodegen
+      - name: Generate Xcode project
+        working-directory: ios
+        run: xcodegen generate
+      - name: Build for iOS devices
+        working-directory: ios
+        run: >-
+          xcodebuild -project ZhishengWeather.xcodeproj
+          -scheme ZhishengWeather
+          -configuration Release
+          -sdk iphoneos
+          -derivedDataPath build/DerivedData
+          CODE_SIGNING_ALLOWED=NO
+          build
+      - name: Package unsigned IPA
+        working-directory: ios
+        run: |
+          mkdir -p build/Payload
+          app_path=$(find build/DerivedData/Build/Products/Release-iphoneos -maxdepth 1 -name '*.app' -print -quit)
+          test -n "$app_path"
+          cp -R "$app_path" build/Payload/
+          cd build
+          /usr/bin/zip -qry ZhishengWeather-unsigned.ipa Payload
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ZhishengWeather-unsigned-IPA
+          path: ios/build/ZhishengWeather-unsigned.ipa
+          if-no-files-found: error
