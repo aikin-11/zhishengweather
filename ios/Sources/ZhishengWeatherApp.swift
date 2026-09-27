@@ -127,6 +127,7 @@ struct GeoResult: Decodable, Identifiable {
 
 enum WeatherCode {
     static func label(_ code: Int?) -> String {
+        guard let code else { return "天气" }
         switch code {
         case 0: "晴朗"
         case 1: "大致晴朗"
@@ -143,6 +144,7 @@ enum WeatherCode {
         }
     }
     static func symbol(_ code: Int?) -> String {
+        guard let code else { return "cloud.fill" }
         switch code {
         case 0, 1: "sun.max.fill"
         case 2: "cloud.sun.fill"
