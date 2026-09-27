@@ -129,31 +129,31 @@ enum WeatherCode {
     static func label(_ code: Int?) -> String {
         guard let code else { return "天气" }
         switch code {
-        case 0: "晴朗"
-        case 1: "大致晴朗"
-        case 2: "局部多云"
-        case 3: "阴天"
-        case 45, 48: "雾"
-        case 51, 53, 55: "毛毛雨"
-        case 61, 63, 65: "降雨"
-        case 71, 73, 75, 77: "降雪"
-        case 80, 81, 82: "阵雨"
-        case 85, 86: "阵雪"
-        case 95, 96, 99: "雷暴"
-        default: "天气"
+        case 0: return "晴朗"
+        case 1: return "大致晴朗"
+        case 2: return "局部多云"
+        case 3: return "阴天"
+        case 45, 48: return "雾"
+        case 51, 53, 55: return "毛毛雨"
+        case 61, 63, 65: return "降雨"
+        case 71, 73, 75, 77: return "降雪"
+        case 80, 81, 82: return "阵雨"
+        case 85, 86: return "阵雪"
+        case 95, 96, 99: return "雷暴"
+        default: return "天气"
         }
     }
     static func symbol(_ code: Int?) -> String {
         guard let code else { return "cloud.fill" }
         switch code {
-        case 0, 1: "sun.max.fill"
-        case 2: "cloud.sun.fill"
-        case 3: "cloud.fill"
-        case 45, 48: "cloud.fog.fill"
-        case 51...67, 80...82: "cloud.rain.fill"
-        case 71...77, 85, 86: "cloud.snow.fill"
-        case 95...99: "cloud.bolt.rain.fill"
-        default: "cloud.fill"
+        case 0, 1: return "sun.max.fill"
+        case 2: return "cloud.sun.fill"
+        case 3: return "cloud.fill"
+        case 45, 48: return "cloud.fog.fill"
+        case 51...67, 80...82: return "cloud.rain.fill"
+        case 71...77, 85, 86: return "cloud.snow.fill"
+        case 95...99: return "cloud.bolt.rain.fill"
+        default: return "cloud.fill"
         }
     }
 }
